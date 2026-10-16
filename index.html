@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob: data:; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>VELTRIX — Local Vault</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="VELTRIX Übersicht">
+        <span class="brand-mark">V</span><span class="brand-copy"><strong>VELTRIX</strong><small>LOCAL VAULT</small></span>
+      </a>
+      <div class="nav-caption">ARBEITSBEREICH</div>
+      <button class="nav-item active" data-view="home"><span class="nav-symbol">⌂</span> Übersicht</button>
+      <button class="nav-item" data-view="vault"><span class="nav-symbol">▣</span> Verschlüsseln</button>
+      <button class="nav-item" data-view="safe"><span class="nav-symbol">▤</span> Tresor</button>
+      <button class="nav-item" data-view="privacy"><span class="nav-symbol">◈</span> Sicherheit & Info</button>
+      <div class="sidebar-bottom"><span class="status-dot"></span><div><strong>Nur lokal</strong><small>Keine Cloud-Verbindung</small></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">PERSÖNLICHER ARBEITSBEREICH</div><h1 id="page-title">Übersicht</h1></div><div class="top-actions"><a class="button button-secondary download-button" href="VELTRIX-Programm.zip" download>Programm herunterladen ↓</a><div class="local-badge"><span class="status-dot"></span> LOKAL AUF DIESEM GERÄT</div></div></header>
+      <section class="view active" id="view-home">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow hero-eyebrow">VELTRIX / PRIVATE SPACE</div><h2>Deine Dateien.<br><em>Deine Kontrolle.</em></h2><p>Ein privater Dateitresor, der Dateien direkt in deinem Browser verschlüsselt. Kein Konto. Keine Cloud. Deine Originaldateien bleiben unangetastet.</p><button class="button button-primary" data-go="vault">Dateitresor öffnen <span>↗</span></button></div>
+          <div class="hero-art" aria-hidden="true"><div class="halo halo-a"></div><div class="halo halo-b"></div><div class="orbit"></div><div class="gem"><span>V</span></div><div class="spark spark-a"></div><div class="spark spark-b"></div></div>
+          <div class="hero-foot"><span>01</span><span class="hero-line"></span><span>LOCAL-FIRST SECURITY</span></div>
+        </div>
+        <div class="section-head"><div><div class="eyebrow">DEIN SYSTEM</div><h3>Einfach. Lokal. Verschlüsselt.</h3></div><span class="quiet">Keine Anmeldung erforderlich</span></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-go="vault"><span class="feature-icon">▣</span><span class="feature-tag">01 / DATEIEN</span><h4>Dateitresor</h4><p>Verschlüssele eine Datei oder stelle sie mit deinem Passwort wieder her.</p><span class="card-arrow">↗</span></button>
+          <div class="feature-card static-card"><span class="feature-icon">⌘</span><span class="feature-tag">02 / VERSCHLÜSSELUNG</span><h4>AES-256-GCM</h4><p>Authentifizierte Verschlüsselung mit passwortbasierter Schlüsselableitung.</p><span class="card-footnote">Browser Web Crypto API</span></div>
+          <div class="feature-card static-card"><span class="feature-icon">◈</span><span class="feature-tag">03 / PRIVATSPHÄRE</span><h4>Auf deinem Gerät</h4><p>Dateiinhalte werden nicht an einen VELTRIX-Server hochgeladen.</p><span class="card-footnote">Offline nach dem Start nutzbar</span></div>
+        </div>
+        <footer>VELTRIX <span>•</span> LOCAL VAULT <span class="footer-right">BUILD 1.0</span></footer>
+      </section>
+      <section class="view" id="view-vault">
+        <div class="page-intro"><div><div class="eyebrow">PRIVATE STORAGE</div><h2>Dateitresor</h2><p>Erstelle eine verschlüsselte <strong>.vltx</strong>-Kopie oder entschlüssele eine Datei, die du bereits mit VELTRIX erstellt hast.</p></div><div class="intro-icon">▣</div></div>
+        <div class="vault-grid">
+          <article class="panel"><div class="panel-title"><span class="step-number">01</span><div><h3>Datei verschlüsseln</h3><p>Wähle die Datei, die du schützen möchtest.</p></div></div>
+            <label for="encrypt-file">Datei</label><input id="encrypt-file" type="file">
+            <label for="encrypt-password">Passwort</label><input id="encrypt-password" type="password" autocomplete="new-password" placeholder="Mindestens 12 Zeichen" minlength="12">
+            <div class="password-hint">Verwende ein langes, einzigartiges Passwort.</div>
+            <button id="encrypt-button" class="button button-primary button-full"><span>Verschlüsseln & herunterladen</span><span>↓</span></button>
+            <div id="encrypt-status" class="status-message" role="status" aria-live="polite"></div>
+          </article>
+          <article class="panel"><div class="panel-title"><span class="step-number step-muted">02</span><div><h3>Datei entschlüsseln</h3><p>Stelle deine Originaldatei mit dem Passwort wieder her.</p></div></div>
+            <label for="decrypt-file">VELTRIX-Datei (.vltx)</label><input id="decrypt-file" type="file" accept=".vltx,application/octet-stream">
+            <label for="decrypt-password">Passwort</label><input id="decrypt-password" type="password" autocomplete="current-password" placeholder="Passwort eingeben">
+            <div class="password-hint">Es wird nur die ausgewählte Datei verarbeitet.</div>
+            <button id="decrypt-button" class="button button-secondary button-full"><span>Entschlüsseln & herunterladen</span><span>↓</span></button>
+            <div id="decrypt-status" class="status-message" role="status" aria-live="polite"></div>
+          </article>
+        </div>
+        <div class="processing-note"><span>◈</span> Die Verarbeitung findet in deinem Browser statt. Es wird keine Netzwerkverbindung zum Verschlüsseln oder Entschlüsseln benötigt.</div>
+      </section>
+      <section class="view" id="view-safe">
+        <div class="page-intro"><div><div class="eyebrow">PRIVATE FILE STORAGE</div><h2>Dein Tresor</h2><p>Füge Dateien hinzu. Sie werden vor dem Speichern lokal verschlüsselt und bleiben in diesem Browser auf diesem Gerät.</p></div><div class="intro-icon">▤</div></div>
+        <div class="panel vault-manager">
+          <div class="panel-title"><span class="step-number">01</span><div><h3>Dateien in den Tresor legen</h3><p>Mehrere Dateien auswählen und mit einem Passwort verschlüsselt speichern.</p></div></div>
+          <label for="safe-files">Dateien auswählen</label><input id="safe-files" type="file" multiple>
+          <label for="safe-password">Tresor-Passwort</label><input id="safe-password" type="password" autocomplete="new-password" placeholder="Mindestens 12 Zeichen" minlength="12">
+          <button id="safe-add" class="button button-primary button-full"><span>Verschlüsseln & im Tresor speichern</span><span>＋</span></button>
+          <div id="safe-status" class="status-message" role="status" aria-live="polite"></div>
+        </div>
+        <div class="section-head vault-list-head"><div><div class="eyebrow">DEIN SPEICHER</div><h3>Gespeicherte Dateien</h3></div><button id="safe-refresh" class="button button-secondary">Aktualisieren ↻</button></div>
+        <div id="safe-list" class="safe-list"><div class="empty-state">Dein Tresor ist noch leer. Füge oben eine Datei hinzu.</div></div>
+        <div class="processing-note"><span>◈</span> Die Tresordateien werden verschlüsselt in diesem Browser gespeichert (IndexedDB). Browserdaten löschen kann lokale Tresordateien entfernen.</div>
+      </section>
+      <section class="view" id="view-privacy">
+        <div class="page-intro"><div><div class="eyebrow">DEVICE & PRIVACY</div><h2>Sicherheit & Info</h2><p>Die wichtigsten Funktionen von VELTRIX auf einen Blick.</p></div><div class="intro-icon">◈</div></div>
+        <div class="info-list">
+          <article><span class="info-check">✓</span><div><h3>Lokale Verarbeitung</h3><p>Die ausgewählte Datei wird direkt in deinem Browser verarbeitet und nicht an einen VELTRIX-Server gesendet.</p></div></article>
+          <article><span class="info-check">✓</span><div><h3>AES-256-GCM</h3><p>Die Dateiinhalte werden mit authentifizierter AES-GCM-Verschlüsselung geschützt.</p></div></article>
+          <article><span class="info-check">✓</span><div><h3>Passwortbasierter Schlüssel</h3><p>PBKDF2-SHA-256 und ein zufälliger Salt leiten aus deinem Passwort den Verschlüsselungsschlüssel ab.</p></div></article>
+          <article><span class="info-check">✓</span><div><h3>Einfacher Dateiexport</h3><p>Verschlüsselte und wiederhergestellte Dateien werden als Downloads gespeichert. Deine ausgewählte Originaldatei bleibt unverändert.</p></div></article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
